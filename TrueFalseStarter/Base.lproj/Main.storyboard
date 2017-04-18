@@ -120,7 +120,13 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="currentScoreField" destination="742-xL-7ld" id="nqt-TN-ZB2"/>
+                        <outlet property="optionFourButton" destination="8dY-9l-VKX" id="9tz-h5-hcG"/>
+                        <outlet property="optionOneButton" destination="J1V-MS-ECi" id="FvF-sw-rKH"/>
+                        <outlet property="optionThreeButton" destination="DUU-2P-sfE" id="6me-ZR-hUR"/>
+                        <outlet property="optionTwoButton" destination="J0o-g8-5Ku" id="JDa-US-Y0H"/>
                         <outlet property="playAgainButton" destination="K17-uy-MvB" id="0Bx-Cm-ye0"/>
+                        <outlet property="questionField" destination="fMi-eW-n1I" id="Vo6-tn-XC2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

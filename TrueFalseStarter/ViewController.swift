@@ -26,9 +26,12 @@ class ViewController: UIViewController {
         ["Question": "All ducks are birds", "Answer": "True"]
     ]
     
+    @IBOutlet weak var currentScoreField: UILabel!
     @IBOutlet weak var questionField: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var optionOneButton: UIButton!
+    @IBOutlet weak var optionTwoButton: UIButton!
+    @IBOutlet weak var optionThreeButton: UIButton!
+    @IBOutlet weak var optionFourButton: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
     
 
