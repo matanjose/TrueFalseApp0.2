@@ -13,7 +13,7 @@ import AudioToolbox
 class ViewController: UIViewController {
     
     
-    let questionsPerRound = masterTriviaListOrdered.count
+    let questionsPerRound = 5 //masterTriviaListOrdered.count
     var questionsAsked = 0
     var correctQuestions = 0
     var masterTriviaListRandomized = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: masterTriviaListOrdered) as! [[String]]
@@ -76,12 +76,15 @@ class ViewController: UIViewController {
         
     }
     
+
+    
+    
     @IBAction func checkAnswer(_ sender: UIButton) {
         // Increment the questions asked counter
         questionsAsked += 1
         
         var selectedQuestion = masterTriviaListRandomized[0]
-        let selectedAnswer = "\(sender.currentTitle)"
+        let selectedAnswer = String(describing: sender.currentTitle)
         let correctAnswer = selectedQuestion[1]
         
         if selectedAnswer == correctAnswer {
