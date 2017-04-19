@@ -12,19 +12,17 @@ import AudioToolbox
 
 class ViewController: UIViewController {
     
-    let questionsPerRound = masterTriviaList.count
+    
+    let questionsPerRound = masterTriviaListOrdered.count
     var questionsAsked = 0
     var correctQuestions = 0
-    var indexOfSelectedQuestion: Int = 0
+    var masterTriviaListRandomized = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: masterTriviaListOrdered) as! [[String]]
+    
     
     var gameSound: SystemSoundID = 0
     
-    let trivia: [[String : String]] = [
-        ["Question": "Only female koalas can whistle", "Answer": "False"],
-        ["Question": "Blue whales are technically whales", "Answer": "True"],
-        ["Question": "Camels are cannibalistic", "Answer": "False"],
-        ["Question": "All ducks are birds", "Answer": "True"]
-    ]
+    var randomTriviaQuestions: [[String]] = []
+    var randomTriviaAnswers: [[String]] = []
     
     @IBOutlet weak var currentScoreField: UILabel!
     @IBOutlet weak var questionField: UILabel!
@@ -48,17 +46,28 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: trivia.count)
-        let questionDictionary = trivia[indexOfSelectedQuestion]
-        questionField.text = questionDictionary["Question"]
-        playAgainButton.isHidden = true
+        
+        var selectedQuestion = masterTriviaListRandomized[0]
+        
+         questionField.text = "What is the capital of \(selectedQuestion[0])"
+        optionOneButton.setTitle(selectedQuestion[2], for: UIControlState.normal)
+        optionTwoButton.setTitle(selectedQuestion[3], for: UIControlState.normal)
+        optionThreeButton.setTitle(selectedQuestion[4], for: UIControlState.normal)
+        optionFourButton.setTitle(selectedQuestion[5], for: UIControlState.normal)
+         playAgainButton.isHidden = true
+        
+        
     }
     
     func displayScore() {
         // Hide the answer buttons
-        trueButton.isHidden = true
-        falseButton.isHidden = true
+        optionOneButton.isHidden = true
+        optionTwoButton.isHidden = true
+        optionThreeButton.isHidden = true
+        optionFourButton.isHidden = true
         
         // Display play again button
         playAgainButton.isHidden = false
@@ -71,10 +80,11 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        let selectedQuestionDict = trivia[indexOfSelectedQuestion]
-        let correctAnswer = selectedQuestionDict["Answer"]
+        var selectedQuestion = masterTriviaListRandomized[0]
+        let selectedAnswer = "\(sender.currentTitle)"
+        let correctAnswer = selectedQuestion[1]
         
-        if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
+        if selectedAnswer == correctAnswer {
             correctQuestions += 1
             questionField.text = "Correct!"
         } else {
@@ -85,6 +95,7 @@ class ViewController: UIViewController {
     }
     
     func nextRound() {
+        masterTriviaListRandomized.remove(at: 0)
         if questionsAsked == questionsPerRound {
             // Game is over
             displayScore()
@@ -96,11 +107,14 @@ class ViewController: UIViewController {
     
     @IBAction func playAgain() {
         // Show the answer buttons
-        trueButton.isHidden = false
-        falseButton.isHidden = false
+        optionOneButton.isHidden = false
+        optionTwoButton.isHidden = false
+        optionThreeButton.isHidden = false
+        optionFourButton.isHidden = false
         
         questionsAsked = 0
         correctQuestions = 0
+        masterTriviaListRandomized = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: masterTriviaListOrdered) as! [[String]]
         nextRound()
     }
     
