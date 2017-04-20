@@ -87,14 +87,14 @@ class ViewController: UIViewController {
         questionsAsked += 1
         
         
-        let selectedAnswer = sender.currentTitle
+        let selectedAnswer = sender.currentTitle!
         let correctAnswer = selectedQuestion[1]
         
         if selectedAnswer == correctAnswer {
             correctQuestions += 1
             questionField.text = "Correct!"
         } else {
-            questionField.text = "Sorry, wrong answer!"
+            questionField.text = "Sorry, \(selectedAnswer) is incorrect. The correct answer is \(correctAnswer)"
         }
         
         loadNextRoundWithDelay(seconds: 2)

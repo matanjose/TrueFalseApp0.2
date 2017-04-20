@@ -43,13 +43,13 @@ let unitedStates = CapitalCity(prompt: "the United States", soughtAnswer: "Washi
 
 let colombia = CapitalCity(prompt: "Colombia", soughtAnswer: "Bogotá", firstRedHerring: "Cartagena", secondRedHerring: "Barranquilla", thirdRedHerring: "Medellín").generateQuestionArray()
 
-let brazil = CapitalCity(prompt: "Brazil?", soughtAnswer: "Brasilia", firstRedHerring: "São Paolo", secondRedHerring: "Salvador", thirdRedHerring: "Rio de Janeiro").generateQuestionArray()
+let brazil = CapitalCity(prompt: "Brazil", soughtAnswer: "Brasilia", firstRedHerring: "São Paolo", secondRedHerring: "Salvador", thirdRedHerring: "Rio de Janeiro").generateQuestionArray()
 
 let france = CapitalCity(prompt: "France", soughtAnswer: "Paris", firstRedHerring: "Versailles", secondRedHerring: "Nice", thirdRedHerring: "Biarritz").generateQuestionArray()
 
 let cuba = CapitalCity(prompt: "Cuba", soughtAnswer: "La Habana", firstRedHerring: "Santiago de Cuba", secondRedHerring: "Santa Clara", thirdRedHerring: "Viñales").generateQuestionArray()
 
-let theNetherlands = CapitalCity(prompt: "The Netherlands", soughtAnswer: "Amsterdam", firstRedHerring: "The Hague", secondRedHerring: "Rotterdam", thirdRedHerring: "Holland").generateQuestionArray()
+let theNetherlands = CapitalCity(prompt: "the Netherlands", soughtAnswer: "Amsterdam", firstRedHerring: "the Hague", secondRedHerring: "Rotterdam", thirdRedHerring: "Holland").generateQuestionArray()
 
 let japan = CapitalCity(prompt: "Japan", soughtAnswer: "Tokyo", firstRedHerring: "Kyoto", secondRedHerring: "Nara", thirdRedHerring: "Nagasaki").generateQuestionArray()
 
