@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     var randomTriviaQuestions: [[String]] = []
     var randomTriviaAnswers: [[String]] = []
+    var selectedQuestion: [String] = []
     
     @IBOutlet weak var currentScoreField: UILabel!
     @IBOutlet weak var questionField: UILabel!
@@ -49,10 +50,11 @@ class ViewController: UIViewController {
     
     
     func displayQuestion() {
+        currentScoreField.text = "Score: \(correctQuestions) / \(questionsAsked)"
         
-        var selectedQuestion = masterTriviaListRandomized[0]
+        selectedQuestion = masterTriviaListRandomized[0]
         
-         questionField.text = "What is the capital of \(selectedQuestion[0])"
+        questionField.text = "The capital of \(selectedQuestion[0]) is:"
         optionOneButton.setTitle(selectedQuestion[2], for: UIControlState.normal)
         optionTwoButton.setTitle(selectedQuestion[3], for: UIControlState.normal)
         optionThreeButton.setTitle(selectedQuestion[4], for: UIControlState.normal)
@@ -63,7 +65,8 @@ class ViewController: UIViewController {
     }
     
     func displayScore() {
-        // Hide the answer buttons
+        // Hide the current score and answer buttons
+        currentScoreField.isHidden = true
         optionOneButton.isHidden = true
         optionTwoButton.isHidden = true
         optionThreeButton.isHidden = true
@@ -83,8 +86,8 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        var selectedQuestion = masterTriviaListRandomized[0]
-        let selectedAnswer = String(describing: sender.currentTitle)
+        
+        let selectedAnswer = sender.currentTitle
         let correctAnswer = selectedQuestion[1]
         
         if selectedAnswer == correctAnswer {
@@ -109,11 +112,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playAgain() {
-        // Show the answer buttons
+        // Show the current score and answer buttons
         optionOneButton.isHidden = false
         optionTwoButton.isHidden = false
         optionThreeButton.isHidden = false
         optionFourButton.isHidden = false
+        currentScoreField.isHidden = false
         
         questionsAsked = 0
         correctQuestions = 0
