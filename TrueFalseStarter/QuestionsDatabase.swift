@@ -54,7 +54,7 @@ let france = CapitalCity(prompt: "France", soughtAnswer: "Paris", firstRedHerrin
 
 let cuba = CapitalCity(prompt: "Cuba", soughtAnswer: "La Habana", firstRedHerring: "Santiago de Cuba", secondRedHerring: "Santa Clara", thirdRedHerring: "Viñales").generateQuestionArray()
 
-let theNetherlands = CapitalCity(prompt: "The Netherlands", soughtAnswer: "Amsterdam", firstRedHerring: "The Hague", secondRedHerring: "Rotterdam", thirdRedHerring: "Holland").generateQuestionArray()
+let theNetherlands = CapitalCity(prompt: "the Netherlands", soughtAnswer: "Amsterdam", firstRedHerring: "the Hague", secondRedHerring: "Rotterdam", thirdRedHerring: "Holland").generateQuestionArray()
 
 let japan = CapitalCity(prompt: "Japan", soughtAnswer: "Tokyo", firstRedHerring: "Kyoto", secondRedHerring: "Nara", thirdRedHerring: "Nagasaki").generateQuestionArray()
 
