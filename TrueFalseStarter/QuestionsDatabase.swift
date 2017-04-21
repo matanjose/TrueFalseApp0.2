@@ -33,9 +33,8 @@ struct CapitalCity {
    
     }
     
-    }
+}
 
-//Input data here
 
 let canada = CapitalCity(prompt: "Canada", soughtAnswer: "Ottawa", firstRedHerring: "Vancouver", secondRedHerring: "Montreal", thirdRedHerring: "Toronto").generateQuestionArray()
 
@@ -43,7 +42,13 @@ let unitedStates = CapitalCity(prompt: "the United States", soughtAnswer: "Washi
 
 let colombia = CapitalCity(prompt: "Colombia", soughtAnswer: "Bogotá", firstRedHerring: "Cartagena", secondRedHerring: "Barranquilla", thirdRedHerring: "Medellín").generateQuestionArray()
 
-let brazil = CapitalCity(prompt: "Brazil?", soughtAnswer: "Brasilia", firstRedHerring: "São Paolo", secondRedHerring: "Salvador", thirdRedHerring: "Rio de Janeiro").generateQuestionArray()
+let spain = CapitalCity(prompt: "Spain", soughtAnswer: "Madrid", firstRedHerring: "San Sebastian", secondRedHerring: "Barcelona", thirdRedHerring: "").generateQuestionArray()
+
+let vietnam = CapitalCity(prompt: "Vietnam", soughtAnswer: "Hanoi", firstRedHerring: "Ho Chi Minh City", secondRedHerring: "Hue", thirdRedHerring: "").generateQuestionArray()
+
+let serbia = CapitalCity(prompt: "Serbia", soughtAnswer: "Beograd", firstRedHerring: "Sombor", secondRedHerring: "Zaječar", thirdRedHerring: "").generateQuestionArray()
+
+let brazil = CapitalCity(prompt: "Brazil", soughtAnswer: "Brasilia", firstRedHerring: "São Paolo", secondRedHerring: "Salvador", thirdRedHerring: "Rio de Janeiro").generateQuestionArray()
 
 let france = CapitalCity(prompt: "France", soughtAnswer: "Paris", firstRedHerring: "Versailles", secondRedHerring: "Nice", thirdRedHerring: "Biarritz").generateQuestionArray()
 
@@ -57,7 +62,22 @@ let kenya = CapitalCity(prompt: "Kenya", soughtAnswer: "Nairobi", firstRedHerrin
 
 let mexico = CapitalCity(prompt: "Mexico", soughtAnswer: "Mexico City", firstRedHerring: "Mérida", secondRedHerring: "Cancún", thirdRedHerring: "Juárez").generateQuestionArray()
 
-var masterTriviaListOrdered: [[String]] = [canada, unitedStates, colombia, brazil, france, cuba, theNetherlands, japan, kenya, mexico]
+
+var masterTriviaListOrdered: [[String]] = [
+    canada,
+    unitedStates,
+    colombia,
+    spain,
+    vietnam,
+    serbia,
+    brazil,
+    france,
+    cuba,
+    theNetherlands,
+    japan,
+    kenya,
+    mexico
+]
 
 
 

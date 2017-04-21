@@ -10,10 +10,12 @@ import UIKit
 import GameKit
 import AudioToolbox
 
+
 class ViewController: UIViewController {
     
     
-    let questionsPerRound = 5 //masterTriviaListOrdered.count
+    
+    let questionsPerRound = 6
     var questionsAsked = 0
     var correctQuestions = 0
     var masterTriviaListRandomized = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: masterTriviaListOrdered) as! [[String]]
@@ -54,11 +56,20 @@ class ViewController: UIViewController {
         
         selectedQuestion = masterTriviaListRandomized[0]
         
-        questionField.text = "The capital of \(selectedQuestion[0]) is:"
+        questionField.text = selectedQuestion[0]
         optionOneButton.setTitle(selectedQuestion[2], for: UIControlState.normal)
         optionTwoButton.setTitle(selectedQuestion[3], for: UIControlState.normal)
         optionThreeButton.setTitle(selectedQuestion[4], for: UIControlState.normal)
         optionFourButton.setTitle(selectedQuestion[5], for: UIControlState.normal)
+        
+        for button in [optionOneButton, optionTwoButton, optionThreeButton, optionFourButton] {
+            if button?.currentTitle == "" {
+                button?.isHidden = true
+            } else {
+                button?.isHidden = false
+            }
+        }
+        
          playAgainButton.isHidden = true
         
         
