@@ -5,6 +5,8 @@
 //  Created by Pasan Premaratne on 3/9/16.
 //  Copyright © 2016 Treehouse. All rights reserved.
 //
+//  Lightning timer adapted from: https://github.com/jMac029/QuizApp
+
 
 import UIKit
 import GameKit
