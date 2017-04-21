@@ -15,15 +15,15 @@ import AudioToolbox
 class ViewController: UIViewController {
     
     
-    
-    let questionsPerRound = masterTriviaListOrdered.count
+    //questionsPerRound could be masterTrivialListOrdered.count
+    //if wanted to go through every question every time played.
+    let questionsPerRound = 6
     var questionsAsked = 0
     var correctQuestions = 0
     var masterTriviaListRandomized = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: masterTriviaListOrdered) as! [[String]]
     var randomTriviaQuestions: [[String]] = []
     var randomTriviaAnswers: [[String]] = []
     var selectedQuestion: [String] = []
-    
     
     var gameSound: SystemSoundID = 0
     
@@ -56,11 +56,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     func displayQuestion() {
         
-        currentScoreField.text = "Score: \(correctQuestions) / \(questionsAsked)"
+        currentScoreField.text = "Current score: \(correctQuestions) correctly answered."
         
         selectedQuestion = masterTriviaListRandomized[0]
         
@@ -89,8 +87,11 @@ class ViewController: UIViewController {
     }
     func outOfTime() {
         questionsAsked += 1
-        questionField.text = "Time's Up! The correct answer was \(selectedQuestion[1])."
-        AudioServicesPlaySystemSound (1024)
+        questionField.text = "Time's Up! The correct answer was \(selectedQuestion[1])"
+        
+        
+        
+
         
         loadNextRoundWithDelay(seconds: 2)
     }
@@ -130,10 +131,10 @@ class ViewController: UIViewController {
             questionField.text = "Sorry, \(selectedAnswer) is incorrect. The correct answer is \(correctAnswer)"
             
             for button in [optionOneButton, optionTwoButton, optionThreeButton, optionFourButton] {
-                if button?.currentTitle == correctAnswer {
-                    button?.isHighlighted = true
+                if button?.currentTitle != correctAnswer {
+                    button?.isHidden = true
                 } else {
-                    button?.isHighlighted = false
+                    button?.isHidden = false
                 }
             }
         }
