@@ -10,7 +10,6 @@ import UIKit
 import GameKit
 import AudioToolbox
 
-
 class ViewController: UIViewController {
     
     
@@ -22,6 +21,7 @@ class ViewController: UIViewController {
     
     
     var gameSound: SystemSoundID = 0
+    
     
     var randomTriviaQuestions: [[String]] = []
     var randomTriviaAnswers: [[String]] = []
@@ -103,8 +103,10 @@ class ViewController: UIViewController {
         
         if selectedAnswer == correctAnswer {
             correctQuestions += 1
+            AudioServicesPlaySystemSound (1025)
             questionField.text = "Correct!"
         } else {
+            AudioServicesPlaySystemSound (1024)
             questionField.text = "Sorry, \(selectedAnswer) is incorrect. The correct answer is \(correctAnswer)"
             
             for button in [optionOneButton, optionTwoButton, optionThreeButton, optionFourButton] {
