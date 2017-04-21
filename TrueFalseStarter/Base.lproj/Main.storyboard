@@ -97,16 +97,29 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TimerLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwd-kn-ht6">
+                                <rect key="frame" x="36" y="50" width="248" height="19.5"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="9lX-Hm-naB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.20784313730000001" green="0.37647058820000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="742-xL-7ld" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="7eg-Pb-M12"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Whv-WN-CqT" secondAttribute="trailing" constant="20" id="ClS-hV-6Of"/>
+                            <constraint firstItem="xwd-kn-ht6" firstAttribute="top" secondItem="742-xL-7ld" secondAttribute="bottom" constant="0.5" id="Eqc-x9-fgd"/>
                             <constraint firstAttribute="bottom" secondItem="K17-uy-MvB" secondAttribute="bottom" constant="25" id="Luo-Jz-MGF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xwd-kn-ht6" secondAttribute="trailing" constant="20" id="TcA-UW-4kf"/>
                             <constraint firstItem="Whv-WN-CqT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="Z5s-aR-Eps"/>
                             <constraint firstItem="fMi-eW-n1I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="ZbJ-dt-cRg"/>
                             <constraint firstItem="742-xL-7ld" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="30" id="a8J-SQ-vEh"/>
                             <constraint firstItem="fMi-eW-n1I" firstAttribute="top" secondItem="742-xL-7ld" secondAttribute="bottom" constant="45" id="ayF-zs-Ksp"/>
+                            <constraint firstItem="xwd-kn-ht6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="b1r-AS-v0b"/>
                             <constraint firstItem="K17-uy-MvB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="bbI-l3-neF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K17-uy-MvB" secondAttribute="trailing" constant="20" id="eCT-ag-En1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fMi-eW-n1I" secondAttribute="trailing" constant="20" id="jtu-hT-xqJ"/>
@@ -123,6 +136,7 @@
                         <outlet property="optionTwoButton" destination="J0o-g8-5Ku" id="JDa-US-Y0H"/>
                         <outlet property="playAgainButton" destination="K17-uy-MvB" id="0Bx-Cm-ye0"/>
                         <outlet property="questionField" destination="fMi-eW-n1I" id="Vo6-tn-XC2"/>
+                        <outlet property="timerLabel" destination="xwd-kn-ht6" id="Gx4-JO-ShL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -14,20 +14,24 @@ class ViewController: UIViewController {
     
     
     
-    let questionsPerRound = 6
+    let questionsPerRound = masterTriviaListOrdered.count
     var questionsAsked = 0
     var correctQuestions = 0
     var masterTriviaListRandomized = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: masterTriviaListOrdered) as! [[String]]
-    
-    
-    var gameSound: SystemSoundID = 0
-    
-    
     var randomTriviaQuestions: [[String]] = []
     var randomTriviaAnswers: [[String]] = []
     var selectedQuestion: [String] = []
     
+    
+    var gameSound: SystemSoundID = 0
+    
+    var lightningTimer = Timer()
+    var seconds = 15
+    var timerRunning = false
+    
+    
     @IBOutlet weak var currentScoreField: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var optionOneButton: UIButton!
     @IBOutlet weak var optionTwoButton: UIButton!
@@ -45,6 +49,7 @@ class ViewController: UIViewController {
     }
 
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -52,7 +57,7 @@ class ViewController: UIViewController {
     
     
     func displayQuestion() {
-        //loadNextRoundWithDelay(seconds: 15)
+        
         currentScoreField.text = "Score: \(correctQuestions) / \(questionsAsked)"
         
         selectedQuestion = masterTriviaListRandomized[0]
@@ -72,19 +77,25 @@ class ViewController: UIViewController {
         }
         
          playAgainButton.isHidden = true
+       
+       
+        resetTimer()
+        beginTimer()
         
-        loadOutOfTimeWithDelay(seconds: 10)
+        
         
     }
     func outOfTime() {
         questionsAsked += 1
         questionField.text = "Time's Up! The correct answer was \(selectedQuestion[1])."
+        AudioServicesPlaySystemSound (1024)
         
         loadNextRoundWithDelay(seconds: 2)
     }
     func displayScore() {
         // Hide the current score and answer buttons
         currentScoreField.isHidden = true
+        timerLabel.isHidden = true
         optionOneButton.isHidden = true
         optionTwoButton.isHidden = true
         optionThreeButton.isHidden = true
@@ -102,6 +113,7 @@ class ViewController: UIViewController {
     
     @IBAction func checkAnswer(_ sender: UIButton) {
         questionsAsked += 1
+        
         let selectedAnswer = sender.currentTitle!
         let correctAnswer = selectedQuestion[1]
         
@@ -109,7 +121,9 @@ class ViewController: UIViewController {
             correctQuestions += 1
             AudioServicesPlaySystemSound (1025)
             questionField.text = "Correct!"
+            lightningTimer.invalidate()
         } else {
+            lightningTimer.invalidate()
             AudioServicesPlaySystemSound (1024)
             questionField.text = "Sorry, \(selectedAnswer) is incorrect. The correct answer is \(correctAnswer)"
             
@@ -130,6 +144,8 @@ class ViewController: UIViewController {
         masterTriviaListRandomized.remove(at: 0)
         if questionsAsked == questionsPerRound {
             // Game is over
+            lightningTimer.invalidate()
+            resetTimer()
             displayScore()
         } else {
             // Continue game
@@ -142,6 +158,8 @@ class ViewController: UIViewController {
         for button in [optionOneButton, optionTwoButton, optionThreeButton, optionFourButton] {
             button?.isHighlighted = false
             button?.isHidden = false
+            timerLabel.isHidden = false
+            currentScoreField.isHidden = false
         }
         
 
@@ -150,6 +168,56 @@ class ViewController: UIViewController {
         masterTriviaListRandomized = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: masterTriviaListOrdered) as! [[String]]
         nextRound()
     }
+    
+    // Lightning Timer Methods
+    
+    func beginTimer() {
+        
+        if timerRunning == false {
+            
+            lightningTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.countdownTimer), userInfo: nil, repeats: true)
+            
+            timerRunning = true
+        }
+    }
+    
+    func countdownTimer() {
+        
+        let correctAnswer = selectedQuestion[1]
+        
+        // countdown by 1 second
+        
+        seconds -= 1
+        
+        timerLabel.text = "Seconds Remaining: \(seconds)"
+        
+        if seconds == 0 {
+            
+            lightningTimer.invalidate()
+            
+            questionsAsked += 1
+            
+            questionField.text = "Sorry, time ran out! \n\n Correct Answer: \(correctAnswer)"
+            
+            
+            
+            
+            
+            loadNextRoundWithDelay(seconds: 2)
+            
+        }
+        
+    }
+    
+    func resetTimer() {
+        
+        seconds = 15
+        timerLabel.text = "Seconds Remaining: \(seconds)"
+        timerRunning = false
+        
+    }
+    
+
     
 
     
@@ -168,6 +236,7 @@ class ViewController: UIViewController {
     }
     
     func loadOutOfTimeWithDelay(seconds: Int) {
+        
         // Converts a delay in seconds to nanoseconds as signed 64 bit integer
         let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
         // Calculates a time value to execute the method given current time and delay
@@ -177,6 +246,7 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             self.outOfTime()
         }
+        
     }
 
     
