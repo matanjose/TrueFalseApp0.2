@@ -52,6 +52,7 @@ class ViewController: UIViewController {
     
     
     func displayQuestion() {
+        //loadNextRoundWithDelay(seconds: 15)
         currentScoreField.text = "Score: \(correctQuestions) / \(questionsAsked)"
         
         selectedQuestion = masterTriviaListRandomized[0]
@@ -72,9 +73,15 @@ class ViewController: UIViewController {
         
          playAgainButton.isHidden = true
         
+        loadOutOfTimeWithDelay(seconds: 10)
         
     }
-    
+    func outOfTime() {
+        questionsAsked += 1
+        questionField.text = "Time's Up! The correct answer was \(selectedQuestion[1])."
+        
+        loadNextRoundWithDelay(seconds: 2)
+    }
     func displayScore() {
         // Hide the current score and answer buttons
         currentScoreField.isHidden = true
@@ -94,10 +101,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func checkAnswer(_ sender: UIButton) {
-        // Increment the questions asked counter
         questionsAsked += 1
-        
-        
         let selectedAnswer = sender.currentTitle!
         let correctAnswer = selectedQuestion[1]
         
@@ -112,6 +116,7 @@ class ViewController: UIViewController {
     }
     
     func nextRound() {
+        
         masterTriviaListRandomized.remove(at: 0)
         if questionsAsked == questionsPerRound {
             // Game is over
@@ -151,6 +156,19 @@ class ViewController: UIViewController {
             self.nextRound()
         }
     }
+    
+    func loadOutOfTimeWithDelay(seconds: Int) {
+        // Converts a delay in seconds to nanoseconds as signed 64 bit integer
+        let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
+        // Calculates a time value to execute the method given current time and delay
+        let dispatchTime = DispatchTime.now() + Double(delay) / Double(NSEC_PER_SEC)
+        
+        // Executes the nextRound method at the dispatch time on the main queue
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            self.outOfTime()
+        }
+    }
+
     
     func loadGameStartSound() {
         let pathToSoundFile = Bundle.main.path(forResource: "GameSound", ofType: "wav")
