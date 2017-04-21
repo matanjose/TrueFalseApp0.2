@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         
         selectedQuestion = masterTriviaListRandomized[0]
         
-        questionField.text = selectedQuestion[0]
+        questionField.text = "The capital of \(selectedQuestion[0]) is:"
         optionOneButton.setTitle(selectedQuestion[2], for: UIControlState.normal)
         optionTwoButton.setTitle(selectedQuestion[3], for: UIControlState.normal)
         optionThreeButton.setTitle(selectedQuestion[4], for: UIControlState.normal)
