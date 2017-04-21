@@ -10,7 +10,6 @@ import UIKit
 import GameKit
 import AudioToolbox
 
-
 class ViewController: UIViewController {
     
     
@@ -22,6 +21,7 @@ class ViewController: UIViewController {
     
     
     var gameSound: SystemSoundID = 0
+    
     
     var randomTriviaQuestions: [[String]] = []
     var randomTriviaAnswers: [[String]] = []
@@ -107,9 +107,19 @@ class ViewController: UIViewController {
         
         if selectedAnswer == correctAnswer {
             correctQuestions += 1
+            AudioServicesPlaySystemSound (1025)
             questionField.text = "Correct!"
         } else {
+            AudioServicesPlaySystemSound (1024)
             questionField.text = "Sorry, \(selectedAnswer) is incorrect. The correct answer is \(correctAnswer)"
+            
+            for button in [optionOneButton, optionTwoButton, optionThreeButton, optionFourButton] {
+                if button?.currentTitle == correctAnswer {
+                    button?.isHighlighted = true
+                } else {
+                    button?.isHighlighted = false
+                }
+            }
         }
         
         loadNextRoundWithDelay(seconds: 2)
@@ -129,12 +139,12 @@ class ViewController: UIViewController {
     
     @IBAction func playAgain() {
         // Show the current score and answer buttons
-        optionOneButton.isHidden = false
-        optionTwoButton.isHidden = false
-        optionThreeButton.isHidden = false
-        optionFourButton.isHidden = false
-        currentScoreField.isHidden = false
+        for button in [optionOneButton, optionTwoButton, optionThreeButton, optionFourButton] {
+            button?.isHighlighted = false
+            button?.isHidden = false
+        }
         
+
         questionsAsked = 0
         correctQuestions = 0
         masterTriviaListRandomized = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: masterTriviaListOrdered) as! [[String]]
